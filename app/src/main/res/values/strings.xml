@@ -14,4 +14,51 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="email_hint">Email</string>
+    <string name="sign_up_button_label">Sign Up</string>
+    <string name="signup_error_message">Please make sure you enter a username, password, and email address!</string>
+    <string name="signup_error_title">Error!</string>
+    <string name="login_error_message">Please make sure you enter a username and password!</string>
+    <string name="login_error_title">Error!</string>
+    <string name="login_button_label">Login</string>
+    <string name="sign_up_text">Sign Up!</string>
+    <string name="logout_label">Logout</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+
+    <string-array name="navDrawerIcons">
+
+        <item>@drawable/ic_action_name</item>
+        <item>@drawable/shows</item>
+        <item>@drawable/profile</item>
+        <item>@drawable/liked</item>
+        <item>@drawable/create_playlist</item>
+        <item>@drawable/play_playlist</item>
+    </string-array>
+
+    <string-array name="navDrawer">
+        <item>@drawable/img_one</item>
+        <item>@drawable/images</item>
+        <item>@drawable/img_three</item>
+        <item>@drawable/img_two</item>
+        <item>@drawable/create_playlist</item>
+        <item>@drawable/play_playlist</item>
+    </string-array>
+    <string-array name="navDrawerItems">
+        <item>Listen</item>
+        <item>Shows</item>
+        <item>Profile</item>
+        <item>Liked</item>
+        <item>Created Playlist</item>
+        <item>Play Playlist</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello fragment</string>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">swarify</string>
 </resources>

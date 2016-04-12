@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".Activity_user_profile_edit"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<include
+    layout="@layout/toolbar"
+    android:id="@+id/toolbar"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"/>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/reltive">
+
+
+        <ImageView
+            android:id="@+id/pro_pic_edit"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/album_art"/>
+        <TextView
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click on image to change the profile picture"
+            android:layout_toRightOf="@id/pro_pic_edit"/>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pro_pic_edit"
+            android:layout_marginTop="40dp">
+        <ImageView
+            android:id="@+id/profile_icon"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile" />
+        <EditText
+            android:id="@+id/user_name_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="username"
+            android:inputType="textNoSuggestions"
+            android:layout_toRightOf="@id/profile_icon"/>
+
+        <ImageView
+            android:id="@+id/location_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/profile_icon"/>
+        <EditText
+            android:id="@+id/user_location_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textNoSuggestions"
+            android:hint="location"
+            android:layout_below="@id/user_name_edit"
+            android:layout_toRightOf="@id/location_icon"
+            />
+
+        <ImageView
+            android:id="@+id/bio_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/location_icon"/>
+        <EditText
+            android:id="@+id/bio_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textNoSuggestions"
+            android:hint="bio"
+            android:layout_below="@id/user_location_edit"
+            android:layout_toRightOf="@id/bio_icon" />
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
+</LinearLayout>

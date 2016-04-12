@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".Shows_Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment" />
+    <ProgressBar
+        android:id="@+id/prog"
+        style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="10dip"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_marginTop="-7dip"
+        android:indeterminate="true"
+        android:indeterminateTint="#ff0000"
+        android:indeterminateTintMode="src_in"
+        android:visibility="gone" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/testlist">
+    </ListView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/drawer_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

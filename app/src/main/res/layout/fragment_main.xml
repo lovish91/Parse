@@ -1,0 +1,177 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.parsebeat.lovish.parse.Main_Fragment">
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/toolbar"
+        android:id="@+id/sliding_lauput">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true" />
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="bottom"
+            android:layout_marginBottom="10dp"
+            app:centered="true"
+            app:fillColor="@color/colorPrimary"
+            app:pageColor="@color/black_overlay"
+            app:snap="false"
+           />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Popular Tracks"
+        android:textStyle="bold"
+        android:id="@+id/popular_tracks_tags"
+        android:layout_marginBottom="0dp"
+        android:textSize="15sp"
+        android:layout_below="@+id/sliding_lauput"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See All"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/seeall"
+        android:layout_below="@id/sliding_lauput"
+        android:layout_alignParentRight="true"
+        android:textColor="#5ca560"
+        android:layout_alignParentStart="false" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/popular_tracks_tags"
+        android:layout_height="230dp"
+        android:id="@+id/main_popular_horizntl"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginBottom="30dp">
+    </android.support.v7.widget.RecyclerView>
+
+
+
+    <TextView
+        android:layout_below="@+id/main_popular_horizntl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Daily Rotation"
+        android:layout_marginBottom="0dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/dailyrotationtags"/>
+    <ListView
+        android:layout_below="@+id/dailyrotationtags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/daily_rotation_list"
+        android:layout_weight="1"
+        android:layout_marginBottom="0dp">
+    </ListView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dailyrotationbutton"
+        android:text="SEE ALL ON DAILY ROTATION"
+        android:layout_below="@+id/daily_rotation_list"
+        android:textStyle="bold"
+        android:layout_margin="20dp"/>
+    <TextView
+        android:layout_below="@+id/dailyrotationbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="New On Swarify"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/newon_tags"/>
+<ListView
+    android:layout_below="@+id/newon_tags"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/new_tracks_list"
+    android:layout_weight="1"
+    android:layout_marginBottom="0dp">
+</ListView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/see_all_newtrcks_button"
+        android:layout_below="@+id/new_tracks_list"
+        android:text="SEE ALL NEW ON SWARIFY"
+        android:textStyle="bold"
+        android:layout_margin="20dp"/>
+    <TextView
+        android:layout_below="@+id/see_all_newtrcks_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Staff Picks"
+        android:layout_marginTop="10dp"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:id="@+id/staff_tags"/>
+    <ListView
+        android:layout_below="@+id/staff_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/staff_picks_list"
+        android:layout_marginBottom="20dp">
+    </ListView>
+    <TextView
+        android:layout_below="@+id/staff_picks_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Featured Artists"
+        android:layout_marginTop="10dp"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:id="@+id/featured_artist_tags"/>
+    <android.support.v4.view.ViewPager
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:id="@+id/viewpager_card"
+        android:layout_below="@+id/featured_artist_tags"
+        android:layout_marginBottom="50dp"
+        android:transitionGroup="false"
+        android:focusable="false">
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>
+</ScrollView>
+</LinearLayout>

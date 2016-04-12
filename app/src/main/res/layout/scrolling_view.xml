@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:baselineAligned="false"
+    android:layout_below="@id/scroll"
+    android:orientation="vertical"
+    android:paddingTop="260dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:id="@+id/userinfo"
+            android:weightSum="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/liked" />
+            <TextView
+                android:id="@+id/Likes_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Likes"
+                android:textSize="16dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/liked" />
+            <TextView
+                android:id="@+id/liked_artist_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/liked_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Artists"
+                android:textSize="16dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/ic_menu_myplaces" />
+            <TextView
+                android:id="@+id/location_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="lon"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Located"
+                android:textSize="16dp" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editbutton"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="right"
+                android:src="@android:drawable/ic_menu_edit"
+                android:background="@android:drawable/ic_menu_edit" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:text="Popular Tracks"
+            android:layout_marginBottom="0dp"
+            android:id="@+id/popular_tracks_tags"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_below="@+id/popular_tracks_tags"
+            android:layout_height="230dp"
+            android:id="@+id/popular_tracks"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Popular Tracks"
+            android:layout_marginBottom="0dp"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/latest_tracks"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
