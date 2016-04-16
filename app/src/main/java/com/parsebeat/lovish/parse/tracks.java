@@ -61,9 +61,9 @@ public class tracks extends ParseObject
     {
         put("username", username);
     }
-
-
-    /////
+    //public void setUser(String user){
+        //put("user", user);
+    //}
 
 
 }

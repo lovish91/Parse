@@ -12,6 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+    <ProgressBar
+        android:id="@+id/prog"
+        style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="10dip"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_marginTop="-7dip"
+        android:indeterminate="true"
+        android:indeterminateTint="#ff0000"
+        android:indeterminateTintMode="src_in"
+        android:visibility="gone" />
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">

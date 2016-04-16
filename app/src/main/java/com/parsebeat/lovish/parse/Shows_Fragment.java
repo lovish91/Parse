@@ -16,14 +16,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +52,9 @@ public class Shows_Fragment extends Fragment {
     List<ParseObject> list;
     List_adapter adap;
     ListView testlist;
-    public List<tracks> modelList;
+    Button logout;
+    TextView currentuser;
+    private List<tracks> ModelList = new ArrayList<tracks>();
     final String TOP_SCORES_LABEL = "topScores";
     private FragmentDrawerListener drawerListener;
     private static final String LIST_STATE = "listState";
@@ -87,8 +93,13 @@ public class Shows_Fragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //new ListProcess().execute();
-        query();
+
+        new ListProcess().execute();
+        adap = new List_adapter(getContext(), ModelList);
+        testlist.setAdapter(adap);
+        adapter = new HrzntlProflAdptr(getContext(), ModelList);
+        hrntlrecyl.setAdapter(adapter);
+        //query();
     }
 
     @Override
@@ -104,11 +115,20 @@ public class Shows_Fragment extends Fragment {
         testlist = (ListView) view.findViewById(R.id.testlist);
         progressBar = (ProgressBar) view.findViewById(R.id.prog);
         //adap= new List_adapter(getContext(),modelList);
+        logout = (Button) view.findViewById(R.id.logout);
 
-
-        Utility.setDynamicHeight(testlist);
-        int color = 0xFF0033CC;
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                ParseUser.logOut();
+            }
+        });
+        int color = 0xFF00FF00;
         progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+        currentuser= (TextView) view.findViewById(R.id.current_user);
+        currentuser.setText(ParseUser.getCurrentUser().getUsername());
+
+
         return view;
     }
 
@@ -120,42 +140,32 @@ public class Shows_Fragment extends Fragment {
     }
 
     public void query(){
-        //modelList = new ArrayList<tracks>();
+        //ModelList = new ArrayList<tracks>();
         ParseQuery<tracks> query = ParseQuery.getQuery(tracks.class);
-        query.orderByDescending("createdAt");
+        //query.fromPin(TOP_SCORES_LABEL);
         query.include("user");
-        query.include("username");
-        query.fromLocalDatastore();
+        //query.include("username");
+        query.orderByDescending("createdAt");
+        //query.fromLocalDatastore();
         query.findInBackground(new FindCallback<tracks>() {
             @Override
             public void done(final List<tracks> modelList, ParseException e) {
-                adap = new List_adapter(getContext(), modelList);
-                testlist.setAdapter(adap);
+                ModelList.clear();
+                ModelList.addAll(modelList);
+                adapter.notifyDataSetChanged();
                 adap.notifyDataSetChanged();
-
+                Utility.setDynamicHeight(testlist);
                 ParseObject.unpinAllInBackground(TOP_SCORES_LABEL, modelList, new DeleteCallback() {
                     @Override
                     public void done(ParseException e) {
 
                         ParseObject.pinAllInBackground(TOP_SCORES_LABEL, modelList);
                     }
-
                 });
             }
         });
-        /*try {
-            modelList = query.find();
-            for (tracks i : modelList) {
-
-                adap.notifyDataSetChanged();
-            }
-        } catch (com.parse.ParseException e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
-        }*/
-        //return null;
     }
-/*
+
     private class ListProcess extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -166,30 +176,44 @@ public class Shows_Fragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... args) {
-            //modelList = new ArrayList<Track_sub>();
-            ParseQuery<> query = ParseQuery.getQuery(.class);
+            //ModelList = new ArrayList<tracks>();
+            final ParseQuery<tracks> query = ParseQuery.getQuery(tracks.class);
+            query.fromPin(TOP_SCORES_LABEL);
             query.orderByDescending("createdAt");
-            try {
-                modelList = query.find();
-                for ( i : modelList) {
+            query.findInBackground(new FindCallback<tracks>() {
+                @Override
+                public void done(final List<tracks> modelList, ParseException e) {
+                    Log.d("data",modelList.toString());
+                    if (modelList.size()==0){
+                        query();
+                    }
+                    ModelList.addAll(modelList);
+                    //adap = new List_adapter(getContext(), modelList);
+                    //testlist.setAdapter(adap);
+                    adap.notifyDataSetChanged();
 
+                        adapter.notifyDataSetChanged();
+                    Utility.setDynamicHeight(testlist);
+                    /*ParseObject.pinAllInBackground(TOP_SCORES_LABEL, modelList, new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+
+                            ParseObject.pinAllInBackground(TOP_SCORES_LABEL, modelList);
+                        }
+
+                    });*/
                 }
-            } catch (com.parse.ParseException e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
+            });
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
-           // adapter = new HrzntlProflAdptr(getContext(), modelList);
-            //hrntlrecyl.setAdapter(adapter)
-            progressBar.setVisibility(View.GONE);
 
-//            pdialog.dismiss();
+            progressBar.setVisibility(View.GONE);
+            query();
         }
-    }*/
+    }
     @Override
     public void onDetach() {
         super.onDetach();

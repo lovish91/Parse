@@ -42,7 +42,7 @@ public class Track_chart_Fragment extends Fragment {
     Toolbar toolbar;
     RecyclerView popl;
     Linear_list_adapter adapter;
-    List<tracks> ModelList;
+    private List<tracks> ModelList= new ArrayList<tracks>();
     final String TOP_SCORES_LABEL = "topScores";
     CollapsingToolbarLayout collapsingToolbarLayout;
 
@@ -126,15 +126,42 @@ public class Track_chart_Fragment extends Fragment {
     }
 
     public void query(){
-        ModelList = new ArrayList<tracks>();
         ParseQuery<tracks> query = ParseQuery.getQuery(tracks.class);
+        query.fromPin(TOP_SCORES_LABEL);
         query.include("user");
-        query.include("username");
+        //query.include("username");
         query.orderByDescending("createdAt");
-        query.fromLocalDatastore();
+        //query.fromLocalDatastore();
         query.findInBackground(new FindCallback<tracks>() {
             @Override
             public void done(final List<tracks> modelList, ParseException e) {
+                ModelList.clear();
+                ModelList.addAll(modelList);
+                adapter.notifyDataSetChanged();
+
+                /*ParseObject.unpinAllInBackground(TOP_SCORES_LABEL, modelList, new DeleteCallback() {
+                    @Override
+                    public void done(ParseException e) {
+
+                        ParseObject.pinAllInBackground(TOP_SCORES_LABEL, modelList);
+                    }
+
+                });*/
+            }
+        });
+        second_query();
+    }
+    private void second_query(){
+        ParseQuery<tracks> query = ParseQuery.getQuery(tracks.class);
+        //query.fromPin(TOP_SCORES_LABEL);
+        query.include("user");
+        //query.include("username");
+        query.orderByDescending("createdAt");
+        //query.fromLocalDatastore();
+        query.findInBackground(new FindCallback<tracks>() {
+            @Override
+            public void done(final List<tracks> modelList, ParseException e) {
+                ModelList.clear();
                 ModelList.addAll(modelList);
                 adapter.notifyDataSetChanged();
 

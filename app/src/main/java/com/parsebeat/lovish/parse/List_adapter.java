@@ -25,7 +25,7 @@ public class List_adapter extends BaseAdapter{
         this.modelList = modelList;
         this.arrayList = new ArrayList<tracks>();
 //
-//       this.arrayList.addAll(modelList);
+      this.arrayList.addAll(modelList);
     }
 
 
@@ -74,7 +74,7 @@ public class List_adapter extends BaseAdapter{
         holder.plays.setText(modelList.get(position).getplays());
         holder.hearts.setText(modelList.get(position).gethearts());
         holder.duration.setText(modelList.get(position).getduration());
-        holder.user.setText(modelList.get(position).getusername());
+//        holder.user.setText(modelList.get(position).getusername());
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

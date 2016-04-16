@@ -89,22 +89,23 @@ public class New_tracks_Fragment extends Fragment {
                 return false;
             }
         });
-        adapter = new Linear_list_adapter(getContext(), ModelList);
-        popl.setAdapter(adapter);
+
         return view;
     }
     public void query(){
         ModelList = new ArrayList<tracks>();
         ParseQuery<tracks> query = ParseQuery.getQuery(tracks.class);
-        query.include("user");
-        query.include("username");
+        query.fromPin(TOP_SCORES_LABEL);
+        //query.include("user");
+        //query.include("username");
         query.orderByDescending("createdAt");
-        query.fromLocalDatastore();
+        //query.fromLocalDatastore();
         query.findInBackground(new FindCallback<tracks>() {
             @Override
             public void done(final List<tracks> modelList, ParseException e) {
-
-                ModelList.addAll(modelList);
+                adapter = new Linear_list_adapter(getContext(), modelList);
+                popl.setAdapter(adapter);
+                //ModelList.addAll(modelList);
                 adapter.notifyDataSetChanged();
 
                 ParseObject.unpinAllInBackground(TOP_SCORES_LABEL, modelList, new DeleteCallback() {

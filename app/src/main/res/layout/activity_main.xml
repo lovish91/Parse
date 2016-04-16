@@ -5,11 +5,12 @@
     android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="7dp">
+    android:clickable="true">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:clickable="false">
 
 
     <FrameLayout
@@ -18,13 +19,18 @@
         android:layout_height="match_parent">
     </FrameLayout>
 </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyle"
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nvView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="left"
-        android:background="@color/white"
-        android:scrollbars="vertical">
-    </android.support.v7.widget.RecyclerView>
-
+        android:layout_gravity="start"
+        android:background="@android:color/white"
+        app:headerLayout="@layout/drawer_header"
+        app:itemBackground="@color/white"
+        android:theme="@style/navtheme"
+        app:paddingEnd="10dp"
+        app:paddingStart="0dp"
+        app:menu="@menu/menu"
+        android:clickable="false" />
 </android.support.v4.widget.DrawerLayout>

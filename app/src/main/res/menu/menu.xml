@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_first_fragment"
+        android:icon="@drawable/listen_icon"
+        android:title="Listen"
+        android:checked="true"
+        android:textSize="17dp" />
+    <item
+        android:id="@+id/nav_second_fragment"
+        android:icon="@drawable/shows_icon"
+        android:title="Shows"
+        />
+    <item
+        android:id="@+id/nav_third_fragment"
+        android:icon="@drawable/profile_icon"
+        android:title="Profile" />
+    <item
+        android:id="@+id/nav_fourth_fragment"
+        android:icon="@drawable/upload_icon"
+        android:title="upload"
+        />
+    </group>
+</menu>

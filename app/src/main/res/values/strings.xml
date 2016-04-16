@@ -34,7 +34,6 @@
         <item>@drawable/shows</item>
         <item>@drawable/profile</item>
         <item>@drawable/liked</item>
-        <item>@drawable/create_playlist</item>
         <item>@drawable/play_playlist</item>
     </string-array>
 
@@ -43,7 +42,6 @@
         <item>@drawable/images</item>
         <item>@drawable/img_three</item>
         <item>@drawable/img_two</item>
-        <item>@drawable/create_playlist</item>
         <item>@drawable/play_playlist</item>
     </string-array>
     <string-array name="navDrawerItems">

@@ -185,6 +185,8 @@ public class ProfileFragment extends Fragment {
         protected Void doInBackground(Void... args) {
             modelList = new ArrayList<tracks>();
             ParseQuery<tracks> query = ParseQuery.getQuery(tracks.class);
+            query.include("user");
+            //query.include("username");
             query.orderByDescending("createdAt");
             try {
                 modelList = query.find();
