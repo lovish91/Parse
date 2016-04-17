@@ -2,12 +2,14 @@ package com.parsebeat.lovish.parse;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.parse.ParseUser;
 
@@ -34,7 +36,7 @@ public class SplashScreen extends AppCompatActivity {
      */
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
-    private View mContentView;
+    private TextView mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override
@@ -94,11 +96,12 @@ public class SplashScreen extends AppCompatActivity {
 
         final ParseUser currentUser = ParseUser.getCurrentUser();
 
+        Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/beatport.otf");
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
-
+        mContentView = (TextView)findViewById(R.id.fullscreen_content);
+        mContentView.setTypeface(typeface);
 
         new Handler().postDelayed(new Runnable() {
 

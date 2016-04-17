@@ -71,7 +71,7 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_artist_profile, container, false);
         collapsingToolbarLayout = (CollapsingToolbarLayout) view.findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("itemTitle");
-        Bitmap bitmap = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.img_three);
+        Bitmap bitmap = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.images);
         Palette.generateAsync(bitmap,
                 new Palette.PaletteAsyncListener() {
                     @Override

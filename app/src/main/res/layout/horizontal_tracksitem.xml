@@ -9,9 +9,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardElevation="0dp"
-        android:layout_marginRight="5dp">
+        android:layout_marginRight="4dp">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="145dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
     <ImageView
@@ -20,77 +20,107 @@
         android:layout_height="140dp"
         android:src="@drawable/album_art" />
 
-    <TextView
+    <com.parsebeat.lovish.parse.TypefacedTextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:typeface="Kirvy-Thin.otf"
         android:id="@+id/hrnztl_itemtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="title"
-        android:textSize="18dp"
+        android:textSize="15sp"
         android:textColor="#060606"
         android:textStyle="bold"
-        android:nestedScrollingEnabled="false" />
+        android:nestedScrollingEnabled="false"
+        android:maxLines="1"/>
 
-    <TextView
+    <com.parsebeat.lovish.parse.TypefacedTextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:typeface="Kirvy-Thin.otf"
         android:id="@+id/hrnztl_itemusrnme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="user name" />
 
-    <TextView
+    <com.parsebeat.lovish.parse.TypefacedTextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:typeface="Kirvy-Thin.otf"
         android:id="@+id/hrnztl_itemgenre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="genre" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:orientation="horizontal"
+        android:weightSum="1">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight=".3">
         <ImageView
             android:id="@+id/hrnztl_itemgheart"
-            android:layout_width="17dp"
-            android:layout_height="17dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="3dp"
             android:layout_marginRight="2dp"
-            android:src="@drawable/unliked_heart" />
+            android:src="@drawable/unliked" />
 
-        <TextView
+        <com.parsebeat.lovish.parse.TypefacedTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:typeface="Kirvy-Thin.otf"
             android:id="@+id/hrnztl_itemhrtno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:textSize="13dp"
             android:text="0" />
-
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3">
         <ImageView
             android:id="@+id/hrnztl_itemgplay"
             android:layout_width="17dp"
             android:layout_height="17dp"
-            android:layout_marginRight="2dp"
-            android:src="@drawable/ic_action_name2" />
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/plays" />
 
-        <TextView
+        <com.parsebeat.lovish.parse.TypefacedTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:typeface="Kirvy-Thin.otf"
             android:id="@+id/hrnztl_itemplayno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="3dp"
             android:text="0" />
-
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3">
         <ImageView
             android:id="@+id/hrnztl_itemgdurtn"
-            android:layout_width="17dp"
             android:layout_marginRight="3dp"
-            android:layout_height="17dp"
-            android:src="@drawable/duration" />
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/time_icon"
+            android:layout_marginTop="3dp"/>
 
-        <TextView
+        <com.parsebeat.lovish.parse.TypefacedTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:typeface="Kirvy-Thin.otf"
             android:id="@+id/hrnztl_itemdurtnno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13dp"
             android:text="0" />
-
+        </LinearLayout>
     </LinearLayout>
         </LinearLayout>
 </android.support.v7.widget.CardView>

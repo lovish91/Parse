@@ -1,6 +1,7 @@
 package com.parsebeat.lovish.parse;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +28,12 @@ public class Linear_list_adapter extends RecyclerView.Adapter<Linear_list_adapte
         this.ModelList = modelList;
         this.arrayList = new ArrayList<tracks>();
         this.arrayList.addAll(modelList);
+
     }
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.vertical_list_item, null,false);
-
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;
     }
@@ -42,7 +43,7 @@ public class Linear_list_adapter extends RecyclerView.Adapter<Linear_list_adapte
         tracks model = ModelList.get(position);
         holder.title.setText(model.getfoo());
         holder.username.setText(model.gettname());
-//        holder.genre.setText(model.getgenre());
+        holder.genre.setText(model.getgenre());
         holder.plays.setText(model.getplays());
         holder.hearts.setText(model.gethearts());
         holder.duration.setText(model.getduration());
@@ -65,7 +66,7 @@ public class Linear_list_adapter extends RecyclerView.Adapter<Linear_list_adapte
             super(view);
             this.title = (TextView) view.findViewById(R.id.Track_name);
             this.username = (TextView) view.findViewById(R.id.user_name);
-            this.genre = (TextView) view.findViewById(R.id.hrnztl_itemgenre);
+            this.genre = (TextView) view.findViewById(R.id.vertcl_user);
             this.plays = (TextView) view.findViewById(R.id.vertcl_itemplayno);
             this.hearts = (TextView) view.findViewById(R.id.vertcl_itemhrtno);
             this.duration = (TextView) view.findViewById(R.id.vertcl_itemdurtnno);

@@ -48,7 +48,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/profile" />
+            android:src="@drawable/profile_icon" />
         <EditText
             android:id="@+id/user_name_edit"
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
             android:id="@+id/location_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/profile"
+            android:src="@drawable/profile_icon"
             android:layout_marginTop="10dp"
             android:layout_below="@id/profile_icon"/>
         <EditText
@@ -78,7 +78,7 @@
             android:id="@+id/bio_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/profile"
+            android:src="@drawable/profile_icon"
             android:layout_marginTop="20dp"
             android:layout_below="@id/location_icon"/>
         <EditText

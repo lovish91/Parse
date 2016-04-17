@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
@@ -11,38 +13,44 @@
 
             <ImageView
                 android:id="@+id/album_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:src="@drawable/album_art"
-                android:layout_marginRight="5dp"
-                android:padding="6dp" />
+                android:layout_marginRight="7dp"
+                android:padding="0dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginTop="6dp"/>
 
-            <TextView
+            <com.parsebeat.lovish.parse.TypefacedTextView
+                app:typeface="Kirvy-Thin.otf"
                 android:id="@+id/Track_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="0dp"
-                android:textSize="17dp"
-                android:layout_marginTop="7dp"
+                android:textSize="15sp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="beatport.otf"
                 android:textStyle="bold"
                 android:text="hello"
                 android:layout_toRightOf="@id/album_image"
-                android:textColor="#080808" />
+                android:textColor="#080808"
+                android:maxLines="1"/>
 
-            <TextView
+            <com.parsebeat.lovish.parse.TypefacedTextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="0dp"
                 android:text="hello"
-                android:layout_margin="0dp"
+                app:typeface="Kirvy-Thin.otf"
                 android:layout_below="@id/Track_name"
-                android:layout_toRightOf="@id/album_image"/>
-            <TextView
+                android:layout_toRightOf="@id/album_image"
+                android:maxLines="1"/>
+            <com.parsebeat.lovish.parse.TypefacedTextView
+                app:typeface="Kirvy-Thin.otf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="hello"
-                android:id="@+id/user"
+                android:text="helo"
+                android:id="@+id/vertcl_user"
                 android:layout_below="@+id/user_name"
                 android:layout_toRightOf="@id/album_image"/>
             <LinearLayout
@@ -50,52 +58,68 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_toRightOf="@id/album_image"
-                android:layout_below="@id/user">
-
+                android:layout_below="@id/vertcl_user"
+                android:weightSum="1">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2">
                 <ImageView
                     android:id="@+id/vertcl_itemgheart"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:layout_marginRight="2dp"
-                    android:src="@drawable/unliked_heart" />
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="4dp"
+                    android:src="@drawable/unliked" />
 
-                <TextView
+                <com.parsebeat.lovish.parse.TypefacedTextView
+                    app:typeface="Kirvy-Thin.otf"
                     android:id="@+id/vertcl_itemhrtno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:textSize="13dp"
                     android:text="0" />
-
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2">
                 <ImageView
                     android:id="@+id/vertcl_itemgplay"
                     android:layout_width="17dp"
                     android:layout_height="17dp"
-                    android:layout_marginRight="2dp"
-                    android:src="@drawable/ic_action_name2" />
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="4dp"
+                    android:src="@drawable/plays" />
 
-                <TextView
+                <com.parsebeat.lovish.parse.TypefacedTextView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    app:typeface="Kirvy-Thin.otf"
                     android:id="@+id/vertcl_itemplayno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13dp"
-                    android:layout_marginRight="8dp"
                     android:text="0" />
-
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6">
                 <ImageView
                     android:id="@+id/vertcl_itemgdurtn"
-                    android:layout_width="17dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_height="17dp"
-                    android:src="@drawable/duration" />
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/time_icon" />
 
-                <TextView
+                <com.parsebeat.lovish.parse.TypefacedTextView
+                    app:typeface="Kirvy-Thin.otf"
                     android:id="@+id/vertcl_itemdurtnno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13dp"
+                    android:layout_marginEnd="25dp"
                     android:text="0" />
-
+            </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
 </LinearLayout>

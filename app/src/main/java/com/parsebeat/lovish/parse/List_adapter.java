@@ -1,7 +1,7 @@
 package com.parsebeat.lovish.parse;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +19,14 @@ public class List_adapter extends BaseAdapter{
     LayoutInflater inflater;
     private List<tracks> modelList;
     private ArrayList<tracks> arrayList;
+    Typeface tf;
 
     public List_adapter(Context context, List<tracks> modelList) {
         this.context = context;
         this.modelList = modelList;
         this.arrayList = new ArrayList<tracks>();
-//
-      this.arrayList.addAll(modelList);
+//        this.tf= Typeface.createFromAsset(context.getAssets(), "fonts/beaport.otf");
+         this.arrayList.addAll(modelList);
     }
 
 
@@ -64,7 +65,7 @@ public class List_adapter extends BaseAdapter{
             holder.hearts = (TextView) view.findViewById(R.id.vertcl_itemhrtno);
             holder.plays = (TextView) view.findViewById(R.id.vertcl_itemplayno);
             holder.duration = (TextView) view.findViewById(R.id.vertcl_itemdurtnno);
-            holder.user= (TextView) view.findViewById(R.id.user);
+            holder.user= (TextView) view.findViewById(R.id.vertcl_user);
             view.setTag(holder);
         }else {
             holder = (ViewHolder) view.getTag();
@@ -74,7 +75,8 @@ public class List_adapter extends BaseAdapter{
         holder.plays.setText(modelList.get(position).getplays());
         holder.hearts.setText(modelList.get(position).gethearts());
         holder.duration.setText(modelList.get(position).getduration());
-//        holder.user.setText(modelList.get(position).getusername());
+        holder.user.setText(modelList.get(position).getgenre());
+        //holder.title.setTypeface(tf);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

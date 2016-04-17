@@ -31,17 +31,14 @@
     <string-array name="navDrawerIcons">
 
         <item>@drawable/ic_action_name</item>
-        <item>@drawable/shows</item>
-        <item>@drawable/profile</item>
-        <item>@drawable/liked</item>
+
         <item>@drawable/play_playlist</item>
     </string-array>
 
     <string-array name="navDrawer">
-        <item>@drawable/img_one</item>
+
         <item>@drawable/images</item>
-        <item>@drawable/img_three</item>
-        <item>@drawable/img_two</item>
+        \
         <item>@drawable/play_playlist</item>
     </string-array>
     <string-array name="navDrawerItems">

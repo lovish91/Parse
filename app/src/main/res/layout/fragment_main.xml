@@ -59,17 +59,19 @@
             app:snap="false"
            />
     </RelativeLayout>
-    <TextView
+    <com.parsebeat.lovish.parse.TypefacedTextView
+        app:typeface="Kirvy-Thin.otf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="12dp"
         android:text="Popular Tracks"
         android:textStyle="bold"
         android:id="@+id/popular_tracks_tags"
         android:layout_marginBottom="0dp"
         android:textSize="15sp"
         android:layout_below="@+id/sliding_lauput"/>
-    <TextView
+    <com.parsebeat.lovish.parse.TypefacedTextView
+        app:typeface="Kirvy-Thin.otf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="See All"
@@ -85,7 +87,7 @@
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_below="@+id/popular_tracks_tags"
-        android:layout_height="230dp"
+        android:layout_height="232dp"
         android:id="@+id/main_popular_horizntl"
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -94,11 +96,12 @@
 
 
 
-    <TextView
+    <com.parsebeat.lovish.parse.TypefacedTextView
+        app:typeface="Kirvy-Thin.otf"
         android:layout_below="@+id/main_popular_horizntl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Daily Rotation"
         android:layout_marginBottom="0dp"
         android:textSize="15sp"
@@ -108,9 +111,11 @@
         android:layout_below="@+id/dailyrotationtags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:id="@+id/daily_rotation_list"
         android:layout_weight="1"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="12dp">
     </ListView>
     <Button
         android:layout_width="match_parent"
@@ -120,7 +125,8 @@
         android:layout_below="@+id/daily_rotation_list"
         android:textStyle="bold"
         android:layout_margin="20dp"/>
-    <TextView
+    <com.parsebeat.lovish.parse.TypefacedTextView
+        app:typeface="Kirvy-Thin.otf"
         android:layout_below="@+id/dailyrotationbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -136,7 +142,8 @@
     android:layout_height="wrap_content"
     android:id="@+id/new_tracks_list"
     android:layout_weight="1"
-    android:layout_marginBottom="0dp">
+    android:layout_marginBottom="0dp"
+    android:layout_marginLeft="12dp">
 </ListView>
     <Button
         android:layout_width="match_parent"
@@ -146,14 +153,15 @@
         android:text="SEE ALL NEW ON SWARIFY"
         android:textStyle="bold"
         android:layout_margin="20dp"/>
-    <TextView
+    <com.parsebeat.lovish.parse.TypefacedTextView
+        app:typeface="Kirvy-Thin.otf"
         android:layout_below="@+id/see_all_newtrcks_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Staff Picks"
         android:layout_marginTop="10dp"
-        android:textSize="13sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:id="@+id/staff_tags"/>
     <ListView
@@ -161,16 +169,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/staff_picks_list"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="12dp">
     </ListView>
-    <TextView
+    <com.parsebeat.lovish.parse.TypefacedTextView
+        app:typeface="Kirvy-Thin.otf"
         android:layout_below="@+id/staff_picks_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Featured Artists"
         android:layout_marginTop="10dp"
-        android:textSize="13sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:id="@+id/featured_artist_tags"/>
     <android.support.v4.view.ViewPager

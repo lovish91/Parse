@@ -12,7 +12,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +46,7 @@ import java.util.List;
 public class Shows_Fragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    Dialog pdialog;
+    Toolbar toolbar;
     ProgressBar progressBar;
     Context context;
     RecyclerView hrntlrecyl;
@@ -94,12 +96,14 @@ public class Shows_Fragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        new ListProcess().execute();
+
         adap = new List_adapter(getContext(), ModelList);
         testlist.setAdapter(adap);
         adapter = new HrzntlProflAdptr(getContext(), ModelList);
         hrntlrecyl.setAdapter(adapter);
+        ((MainActivity)getActivity()).setUpToolbar(toolbar);
         //query();
+        new ListProcess().execute();
     }
 
     @Override
@@ -114,6 +118,7 @@ public class Shows_Fragment extends Fragment {
         hrntlrecyl.setLayoutManager(layoutManager);
         testlist = (ListView) view.findViewById(R.id.testlist);
         progressBar = (ProgressBar) view.findViewById(R.id.prog);
+        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         //adap= new List_adapter(getContext(),modelList);
         logout = (Button) view.findViewById(R.id.logout);
 
@@ -145,6 +150,7 @@ public class Shows_Fragment extends Fragment {
         //query.fromPin(TOP_SCORES_LABEL);
         query.include("user");
         //query.include("username");
+        query.setLimit(5);
         query.orderByDescending("createdAt");
         //query.fromLocalDatastore();
         query.findInBackground(new FindCallback<tracks>() {
@@ -155,11 +161,11 @@ public class Shows_Fragment extends Fragment {
                 adapter.notifyDataSetChanged();
                 adap.notifyDataSetChanged();
                 Utility.setDynamicHeight(testlist);
-                ParseObject.unpinAllInBackground(TOP_SCORES_LABEL, modelList, new DeleteCallback() {
+                ParseObject.unpinAllInBackground(TOP_SCORES_LABEL, ModelList, new DeleteCallback() {
                     @Override
                     public void done(ParseException e) {
 
-                        ParseObject.pinAllInBackground(TOP_SCORES_LABEL, modelList);
+                        ParseObject.pinAllInBackground(TOP_SCORES_LABEL, ModelList);
                     }
                 });
             }
@@ -180,6 +186,7 @@ public class Shows_Fragment extends Fragment {
             final ParseQuery<tracks> query = ParseQuery.getQuery(tracks.class);
             query.fromPin(TOP_SCORES_LABEL);
             query.orderByDescending("createdAt");
+            query.setLimit(5);
             query.findInBackground(new FindCallback<tracks>() {
                 @Override
                 public void done(final List<tracks> modelList, ParseException e) {
@@ -188,20 +195,10 @@ public class Shows_Fragment extends Fragment {
                         query();
                     }
                     ModelList.addAll(modelList);
-                    //adap = new List_adapter(getContext(), modelList);
-                    //testlist.setAdapter(adap);
                     adap.notifyDataSetChanged();
 
-                        adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                     Utility.setDynamicHeight(testlist);
-                    /*ParseObject.pinAllInBackground(TOP_SCORES_LABEL, modelList, new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-
-                            ParseObject.pinAllInBackground(TOP_SCORES_LABEL, modelList);
-                        }
-
-                    });*/
                 }
             });
             return null;
@@ -209,7 +206,10 @@ public class Shows_Fragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void result) {
+//            adap.notifyDataSetChanged();
 
+//            adapter.notifyDataSetChanged();
+//            Utility.setDynamicHeight(testlist);
             progressBar.setVisibility(View.GONE);
             query();
         }

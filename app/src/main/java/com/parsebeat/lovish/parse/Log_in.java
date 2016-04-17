@@ -2,6 +2,7 @@ package com.parsebeat.lovish.parse;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -31,12 +32,17 @@ public class Log_in extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_login);
-
+        Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/beatport.otf");
+        Typeface typeface2 = Typeface.createFromAsset(getAssets(),"fonts/Kirvy-Thin.otf");
+        TextView logo= (TextView) findViewById(R.id.logo);
+        logo.setTypeface(typeface);
+        TextView welcometitle = (TextView) findViewById(R.id.welcometitle);
+        welcometitle.setTypeface(typeface2);
         signUpTextView = (TextView) findViewById(R.id.signUpText);
         usernameEditText = (EditText) findViewById(R.id.usernameField);
         passwordEditText = (EditText) findViewById(R.id.passwordField);
-        loginButton = (Button) findViewById(R.id.loginButton);
-
+        //loginButton = (Button) findViewById(R.id.loginButton);
+TextView logintext = (TextView) findViewById(R.id.loginButton1);
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +51,8 @@ public class Log_in extends AppCompatActivity {
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        assert logintext != null;
+        logintext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = usernameEditText.getText().toString();

@@ -1,9 +1,9 @@
 package com.parsebeat.lovish.parse;
 
-import android.app.Dialog;
-import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -77,6 +77,7 @@ public class Main_Fragment extends Fragment  {
         staffpickslist = (ListView) view.findViewById(R.id.staff_picks_list);
         toolbar= (Toolbar) view.findViewById(R.id.toolbar);
         poplrtckbrn = (TextView) view.findViewById(R.id.seeall);
+        progressBar = (ProgressBar) view.findViewById(R.id.prog);
         poplrtckbrn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View arg0) {
@@ -115,7 +116,8 @@ public class Main_Fragment extends Fragment  {
                 fragmentTransaction.commit();
             }
         });
-
+        int color = 0xFF00FF00;
+        progressBar.getIndeterminateDrawable().setColorFilter(color, PorterDuff.Mode.SRC_IN);
 
         return view;
     }
@@ -146,7 +148,6 @@ public class Main_Fragment extends Fragment  {
         //query();
         popadapter = new HrzntlProflAdptr(getContext(), ModelList);
         vertial_Recycle.setAdapter(popadapter);
-
         firstadapter = new List_adapter(getContext(), ModelList);
         dailyrotationlist.setAdapter(firstadapter);
         secondadaper = new List_adapter(getContext(),ModelList);
@@ -166,57 +167,85 @@ public class Main_Fragment extends Fragment  {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        //new ListProcess().execute();
+        //new FirstQuery().execute();
         query();
-
-        navTitles = getResources().getStringArray(R.array.navDrawerItems);
-        navIcons = getResources().obtainTypedArray(R.array.navDrawer);
         ((MainActivity)getActivity()).setUpToolbar(toolbar);
 
-        //toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
-        //AppCompatActivity activity = (AppCompatActivity) getActivity();
-        //activity.setSupportActionBar(toolbar);
-        //activity.getSupportActionBar().setHomeAsUpIndicator(R.drawable.profile);
-        //activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //activity.getSupportActionBar().setTitle("Your Title");
-        
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
+        //query();
+
+    }
+    private class FirstQuery extends AsyncTask<Void , Void, Void>{
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Create a progressdialog
+            progressBar.setVisibility(View.VISIBLE);
+        }
+        @Override
+        protected Void doInBackground(Void... args) {
+            //final ArrayList<tracks> blist = new ArrayList<tracks>();
+            ParseQuery<tracks> query = ParseQuery.getQuery(tracks.class);
+            query.fromPin(TOP_SCORES_LABEL);
+            query.setLimit(5);
+            query.orderByDescending("createdAt");
+            query.findInBackground(new FindCallback<tracks>() {
+                @Override
+                public void done(final List<tracks> modelList, ParseException e) {
+                    if (modelList.size()>0) {
+
+                            ModelList.clear();
+                           ModelList.addAll(modelList);
+                    }else {
+                        new SecondQuery().execute();
+                    }
+                }
+            });
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result){
+           // ModelList.addAll(ablist);
+            popadapter.notifyDataSetChanged();
+            firstadapter.notifyDataSetChanged();
+            secondadaper.notifyDataSetChanged();
+            thirdadapter.notifyDataSetChanged();
+            Utility.setDynamicHeight(staffpickslist);
+            Utility.setDynamicHeight(newtracks);
+            Utility.setDynamicHeight(dailyrotationlist);
+            progressBar.setVisibility(View.GONE);
+            //isConnected();
+            //new ListProcess().execute();
+        }
+
+
     }
     private void query(){
-        //ModelList = new ArrayList<tracks>();
         ParseQuery<tracks> query = ParseQuery.getQuery(tracks.class);
         query.fromPin(TOP_SCORES_LABEL);
         query.setLimit(5);
         query.orderByDescending("createdAt");
-        //query.fromLocalDatastore();
         query.findInBackground(new FindCallback<tracks>() {
             @Override
             public void done(final List<tracks> modelList, ParseException e) {
                 //for (tracks i:modelList){ModelList.add(i);}
-                if(modelList.size()==0){
+                if(modelList.size()>0){
+                    ModelList.clear();
+                    ModelList.addAll(modelList);
+                    popadapter.notifyDataSetChanged();
+                    firstadapter.notifyDataSetChanged();
+                    secondadaper.notifyDataSetChanged();
+                    thirdadapter.notifyDataSetChanged();
+                    Utility.setDynamicHeight(staffpickslist);
+                    Utility.setDynamicHeight(newtracks);
+                    Utility.setDynamicHeight(dailyrotationlist);
+                }else {
                     isConnected();
-
+                    new SecondQuery().execute();
                 }
-                ModelList.clear();
-                ModelList.addAll(modelList);
-                //popadapter = new HrzntlProflAdptr(getContext(), modelList);
-                //vertial_Recycle.setAdapter(popadapter);
-                popadapter.notifyDataSetChanged();
-
-                //popadapter.notifyDataSetChanged();
-                //firstadapter = new List_adapter(getContext(), modelList);
-                //dailyrotationlist.setAdapter(firstadapter);
-                firstadapter.notifyDataSetChanged();
-                //secondadaper = new List_adapter(getContext(),modelList);
-                //newtracks.setAdapter(secondadaper);
-                secondadaper.notifyDataSetChanged();
-                //thirdadapter = new List_adapter(getContext(),modelList);
-                //staffpickslist.setAdapter(thirdadapter);
-                thirdadapter.notifyDataSetChanged();
-                Utility.setDynamicHeight(staffpickslist);
-                Utility.setDynamicHeight(newtracks);
-                Utility.setDynamicHeight(dailyrotationlist);
-
             }
         });
     }
@@ -225,13 +254,11 @@ public class Main_Fragment extends Fragment  {
         try {
             ConnectivityManager connectivityManager = (ConnectivityManager) getActivity()
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
-
-
             NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
             connected = networkInfo != null && networkInfo.isAvailable() &&
                     networkInfo.isConnected();
             Toast.makeText(getActivity(), " Connected ", Toast.LENGTH_LONG).show();
-            new ListProcess().execute();
+            new SecondQuery().execute();
             return true;
         }catch (Exception e){
             Log.d("connectivity", e.toString());
@@ -239,7 +266,7 @@ public class Main_Fragment extends Fragment  {
             return false;
         }
     }
-   private class ListProcess extends AsyncTask<Void, Void, Void> {
+   private class SecondQuery extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -250,7 +277,7 @@ public class Main_Fragment extends Fragment  {
 
         @Override
         protected Void doInBackground(Void... args) {
-            //modelList = new ArrayList<tracks>();
+            //final ArrayList<tracks> alist = new ArrayList<tracks>();
 
             final ParseQuery<tracks> query = ParseQuery.getQuery(tracks.class);
             //query.fromPin(TOP_SCORES_LABEL);
@@ -260,16 +287,22 @@ public class Main_Fragment extends Fragment  {
                 @Override
                 public void done(final List<tracks> modelList, ParseException e) {
                     Log.d("data", modelList.toString());
-                    if (modelList.size() == 0) {
 
-                        //query();
-                    }
-                    ModelList.clear();
-                    ModelList.addAll(modelList);
-                    //popadapter.notifyDataSetChanged();
-                    //firstadapter.notifyDataSetChanged();
-                    //secondadaper.notifyDataSetChanged();
-                    //thirdadapter.notifyDataSetChanged();
+
+                        ModelList.clear();
+                        ModelList.addAll(modelList);
+                        //popadapter.notifyDataSetChanged();
+                        //firstadapter.notifyDataSetChanged();
+                        //secondadaper.notifyDataSetChanged();
+                        //thirdadapter.notifyDataSetChanged();
+                    /*ParseObject.unpinAllInBackground(TOP_SCORES_LABEL, modelList, new DeleteCallback() {
+                        @Override
+                        public void done(ParseException e) {
+
+                            ParseObject.pinAllInBackground(TOP_SCORES_LABEL, modelList);
+                        }
+
+                    });*/
                 }
             });
             return null;
@@ -277,22 +310,23 @@ public class Main_Fragment extends Fragment  {
 
         @Override
         protected void onPostExecute(Void result) {
-            //popadapter = new HrzntlProflAdptr(getContext(), modelList);
-            //vertial_Recycle.setAdapter(popadapter);
             popadapter.notifyDataSetChanged();
-            //firstadapter = new List_adapter(getContext(), modelList);
-            //dailyrotationlist.setAdapter(firstadapter);
             firstadapter.notifyDataSetChanged();
-            //secondadaper = new List_adapter(getContext(),modelList);
-            //newtracks.setAdapter(secondadaper);
             secondadaper.notifyDataSetChanged();
-            //thirdadapter = new List_adapter(getContext(),modelList);
-            //staffpickslist.setAdapter(thirdadapter);
             thirdadapter.notifyDataSetChanged();
             Utility.setDynamicHeight(staffpickslist);
             Utility.setDynamicHeight(newtracks);
             Utility.setDynamicHeight(dailyrotationlist);
+
             progressBar.setVisibility(View.GONE);
+            ParseObject.unpinAllInBackground(TOP_SCORES_LABEL, ModelList, new DeleteCallback() {
+                @Override
+                public void done(ParseException e) {
+
+                    ParseObject.pinAllInBackground(TOP_SCORES_LABEL, ModelList);
+                }
+
+            });
         }
 
     }

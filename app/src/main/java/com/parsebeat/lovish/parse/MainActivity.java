@@ -1,9 +1,10 @@
 package com.parsebeat.lovish.parse;
 
 
-import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.content.res.TypedArray;
+
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,58 +13,34 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 
-import com.parse.ParseObject;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView listview;
-    List<ParseObject> list;
-    ProgressDialog pdialog;
-    RecyclerView recyclerView;
-    MyAdapter adapter;
-    List_adapter adatper_two;
+
+
     DrawerLayout drawer;
-    Toolbar toolbar;
     NavigationView nvd;
     String navTitles[];
     TypedArray navIcons;
     Shows_Fragment drawerFragment;
     ActionBarDrawerToggle Dtoogle;
-    private List<Model> modelList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
         navTitles = getResources().getStringArray(R.array.navDrawerItems);
         navIcons = getResources().obtainTypedArray(R.array.navDrawerIcons);
-        /*recyclerView = (RecyclerView) findViewById(R.id.recyle);
-        //listview = (RecyclerView) findViewById(R.id.listviewtest);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);*/
-        //adapter = new MyAdapter(navTitles, navIcons, this);
-        //recyclerView.setAdapter(adapter);
-        //toolbar = (Toolbar) findViewById(R.id.toolbar);
+
 
         nvd = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvd);
         ////////////////
-        //LinearLayoutManager layoutManage = new LinearLayoutManager(this);
-        //layoutManage.setOrientation(LinearLayoutManager.VERTICAL);
-        //listview.setLayoutManager(layoutManage);
+
         drawer = (DrawerLayout) findViewById(R.id.drawer);
-        //drawerFragment = (Shows_Fragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-        //drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer), toolbar);
 
       Fragment main_fragment = new Main_Fragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
