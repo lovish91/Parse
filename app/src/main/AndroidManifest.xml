@@ -42,6 +42,9 @@
         <activity android:name=".Log_in" />
         <activity android:name=".Activity_user_profile_edit" />
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="4176fa14d30dcad7d9e5b8c082e130602ed9e106" />
     </application>
 
 </manifest>
